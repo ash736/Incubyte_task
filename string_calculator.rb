@@ -6,5 +6,9 @@ class StringCalculator
     return numbers.to_i if numbers.size == 1
     nums = numbers.split(",").map(&:to_i)
     nums.reduce(:+)
+
+    delimiter = ','
+    nums = numbers.split(/#{delimiter}|\n/).map(&:to_i)
+    nums.reduce(:+)
   end
 end

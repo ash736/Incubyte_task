@@ -15,9 +15,15 @@ describe StringCalculator do
       end
     end
 
-     context "when the input contains two numbers separated by a comma" do
+     context "when the input contains two numbers or more separated by a comma" do
       it "returns the sum of the numbers" do
         expect(StringCalculator.add("1,5")).to eq(6)
+      end
+    end
+
+     context "when the input contains new lines between numbers" do
+      it "treats new lines as delimiters and returns the sum" do
+        expect(StringCalculator.add("1\n2,3")).to eq(6)
       end
     end
 
