@@ -8,7 +8,17 @@ class StringCalculator
     nums.reduce(:+)
 
     delimiter = ','
+
+    if numbers.start_with?("//")
+      delimiter = numbers[2]
+      numbers = numbers.split("\n")[1]
+    end
+
     nums = numbers.split(/#{delimiter}|\n/).map(&:to_i)
+    negatives = nums.select { |num| num.negative? }
+    if negatives.any?
+      raise "Negative numbers not allowed: #{negatives.join(', ')}"
+    end
     nums.reduce(:+)
   end
 end
